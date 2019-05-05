@@ -45,7 +45,7 @@ class PostgresqlHq < Formula
       --with-pam
       --with-perl
       --with-python3
-      --with-llvm
+      --with-llvm LLVM_CONFIG=/usr/local/opt/llvm/bin/llvm-config
       --with-uuid=e2fs
     ]
 
