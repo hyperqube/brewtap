@@ -45,6 +45,7 @@ class Postgresql < Formula
       --with-pam
       --with-perl
       --with-python3
+      --with-llvm
       --with-uuid=e2fs
     ]
 
