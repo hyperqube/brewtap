@@ -45,9 +45,9 @@ class PostgresqlHq < Formula
       --with-pam
       --with-perl
       --with-python3
-     # --with-llvm LLVM_CONFIG=/usr/local/Cellar/llvm/8.0.0/bin/llvm-config
       --with-uuid=e2fs
     ]
+     # --with-llvm LLVM_CONFIG=/usr/local/Cellar/llvm/8.0.0/bin/llvm-config
 
     # The CLT is required to build Tcl support on 10.7 and 10.8 because
     # tclConfig.sh is not part of the SDK
