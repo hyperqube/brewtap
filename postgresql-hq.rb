@@ -4,7 +4,8 @@ class PostgresqlHq < Formula
   url "https://ftp.postgresql.org/pub/snapshot/dev/postgresql-snapshot.tar.bz2"
   sha256 "f30e583625dd0620fcef76d42f7b4ed116365a64c91cd1cd2291495eda62799f"
   revision 1
-  head "https://github.com/postgres/postgres.git"
+  head "https://git.postgresql.org/git/postgresql.git"
+
 
 #  bottle do
 #    sha256 "857634536138eeec0ea34cdbf42fb6ce15a7f3f824394f7feed6cc49e1e0963c" => :mojave
