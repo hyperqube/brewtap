@@ -1,8 +1,8 @@
 class PostgresqlHq < Formula
   desc "Object-relational database system"
   homepage "https://www.postgresql.org/"
-  url "https://ftp.postgresql.org/pub/source/v11.2/postgresql-11.2.tar.bz2"
-  sha256 "2676b9ce09c21978032070b6794696e0aa5a476e3d21d60afc036dc0a9c09405"
+  url "https://ftp.postgresql.org/pub/snapshot/dev/postgresql-snapshot.tar.bz2"
+  sha256 "f30e583625dd0620fcef76d42f7b4ed116365a64c91cd1cd2291495eda62799f"
   revision 1
   head "https://github.com/postgres/postgres.git"
 
