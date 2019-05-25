@@ -24,8 +24,8 @@ class PostgresqlHq < Formula
   def install
     # avoid adding the SDK library directory to the linker search path
     ENV["XML2_CONFIG"] = "xml2-config --exec-prefix=/usr"
-
-    ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib} -L#{Formula["readline"].opt_lib} "
+    ENV.append 'PATH', "/usr/local/Cellar/llvm/8.0.0/bin"
+    ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib} -L#{Formula["readline"].opt_lib}   -L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
     ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include} -I#{Formula["readline"].opt_include} "
     ENV['LLVM_CONFIG']='/usr/local/Cellar/llvm/8.0.0/bin/llvm-config'
     args = %W[
