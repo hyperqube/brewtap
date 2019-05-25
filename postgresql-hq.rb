@@ -27,7 +27,7 @@ class PostgresqlHq < Formula
 
     ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib} -L#{Formula["readline"].opt_lib} "
     ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include} -I#{Formula["readline"].opt_include} "
-
+    ENV['LLVM_CONFIG']='/usr/local/Cellar/llvm/8.0.0/bin/llvm-config'
     args = %W[
       --disable-debug
       --prefix=#{prefix}
@@ -47,8 +47,10 @@ class PostgresqlHq < Formula
       --with-perl
       --with-python3
       --with-uuid=e2fs
+      --with-jit
+      --with-llvm 
     ]
-     # --with-llvm LLVM_CONFIG=/usr/local/Cellar/llvm/8.0.0/bin/llvm-config
+     # 
 
     # The CLT is required to build Tcl support on 10.7 and 10.8 because
     # tclConfig.sh is not part of the SDK
