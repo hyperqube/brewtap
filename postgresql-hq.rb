@@ -1,8 +1,8 @@
 class PostgresqlHq < Formula
   desc "Object-relational database system"
   homepage "https://www.postgresql.org/"
-  url "https://ftp.postgresql.org/pub/source/v12beta4/postgresql-12beta4.tar.bz2"
-  sha256 "422f5e2ad999126f505b44c2d56abe726a08ed7e50e2d268e9906c879831805f"
+  url "https://ftp.postgresql.org/pub/source/v12.0/postgresql-12.0.tar.bz2"
+  sha256 "cda2397215f758b793f741c86be05468257b0e6bcb1a6113882ab5d0df0855c6"
   revision 1
   head "https://git.postgresql.org/git/postgresql.git"
 
@@ -18,16 +18,16 @@ class PostgresqlHq < Formula
   depends_on "openssl"
   depends_on "readline"
 
-  conflicts_with "postgres-xc",
-    :because => "postgresql and postgres-xc install the same binaries."
+  conflicts_with "postgres-xc", "postgresql",
+    :because => "postgresql  ,postgresql-hq , and postgres-xc install the same binaries."
 
   def install
     # avoid adding the SDK library directory to the linker search path
     ENV["XML2_CONFIG"] = "xml2-config --exec-prefix=/usr"
-    ENV.append 'PATH', "/usr/local/Cellar/llvm/8.0.0/bin"
-    ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib} -L#{Formula["readline"].opt_lib}   -L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+    ENV.append 'PATH', "/usr/local/Cellar/llvm/9.0.0/bin"
+    ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib} -L#{Formula["readline"].opt_lib}   -L/usr/local/Cellar/llvm/9.0.0/lib/ -Wl,-rpath,usr/local/Cellar/llvm/9.0.0/lib/"
     ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include} -I#{Formula["readline"].opt_include} "
-    ENV['LLVM_CONFIG']='/usr/local/Cellar/llvm/8.0.0/bin/llvm-config'
+    ENV['LLVM_CONFIG']='/usr/local/Cellar/llvm/9.0.0/bin/llvm-config'
     args = %W[
       --disable-debug
       --prefix=#{prefix}
@@ -39,12 +39,12 @@ class PostgresqlHq < Formula
       --with-bonjour
       --with-gssapi
       --with-icu
-      --with-ldap
       --with-libxml
       --with-libxslt
       --with-openssl
+      --with-ldap
+      --with-lua
       --with-pam
-      --with-perl
       --with-python3
       --with-uuid=e2fs
       --with-jit
