@@ -47,7 +47,6 @@ class PostgresqlHq < Formula
       --with-pam
       --with-python3
       --with-uuid=e2fs
-      --with-jit
       --with-llvm
     ]
      # 
