@@ -3,8 +3,9 @@ class HqClickhouse < Formula
   homepage "https://clickhouse.yandex"
   version "v19.15.5.18"
   url "https://github.com/ClickHouse/ClickHouse/archive/v19.15.5.18-stable.tar.gz"
-  head "https://github.com/yandex/ClickHouse.git"
+  sha256 "401d06d95c51125a9615b8b5f394dd66c9abf86a1577a99f0b66547458e857ae"
 
+  head "https://github.com/yandex/ClickHouse.git"
   #https://github.com/ClickHouse/ClickHouse/archive/v19.15.5.18-stable.tar.gz
 
   #depends_on "gcc@8"
