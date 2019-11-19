@@ -1,4 +1,4 @@
-class Clickhouse < Formula
+class HqClickhouse < Formula
   desc "ClickHouse is a free analytic DBMS for big data."
   homepage "https://clickhouse.yandex"
   version "v19.15.5.18"
