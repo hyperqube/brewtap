@@ -1,8 +1,8 @@
 class PostgresqlHq < Formula
   desc "Object-relational database system"
   homepage "https://www.postgresql.org/"
-  url "https://ftp.postgresql.org/pub/source/v12.0/postgresql-12.0.tar.bz2"
-  sha256 "cda2397215f758b793f741c86be05468257b0e6bcb1a6113882ab5d0df0855c6"
+  url "https://ftp.postgresql.org/pub/source/v12.2/postgresql-12.2.tar.bz2"
+  sha256 "ad1dcc4c4fc500786b745635a9e1eba950195ce20b8913f50345bb7d5369b5de"
   revision 1
   head "https://git.postgresql.org/git/postgresql.git"
 
@@ -17,16 +17,23 @@ class PostgresqlHq < Formula
   depends_on "icu4c"
   depends_on "openssl"
   depends_on "readline"
-
   conflicts_with "postgres-xc", "postgresql",
     :because => "postgresql  ,postgresql-hq , and postgres-xc install the same binaries."
 
   def install
     # avoid adding the SDK library directory to the linker search path
+
+    libs = %w[openssl llvm readline ]
+
+    libs.each{ |i| 
+      ENV.prepend "LDFLAGS", "-L#{Formula[i].opt_lib}"
+      ENV.prepend "CPPFLAGS", "-L#{Formula[i].opt_include}"
+
+    }
     ENV["XML2_CONFIG"] = "xml2-config --exec-prefix=/usr"
     ENV.append 'PATH', ":/usr/local/Cellar/llvm/9.0.0/bin"
-    ENV.prepend "LDFLAGS", " -L#{Formula["openssl"].opt_lib} -L#{Formula["readline"].opt_lib}   -L/usr/local/Cellar/llvm/9.0.0/lib -Wl,-rpath,usr/local/Cellar/llvm/9.0.0/lib"
-    ENV.prepend "CPPFLAGS", " -I#{Formula["openssl"].opt_include} -I#{Formula["readline"].opt_include}  -I/usr/local/Cellar/llvm/9.0.0/include"
+    #ENV.prepend "LDFLAGS", " -L#{Formula["openssl"].opt_lib} -L#{Formula["readline"].opt_lib}   -L/usr/local/Cellar/llvm/9.0.0/lib -Wl,-rpath,usr/local/Cellar/llvm/9.0.0/lib"
+    #ENV.prepend "CPPFLAGS", " -I#{Formula["openssl"].opt_include} -I#{Formula["readline"].opt_include}  -I/usr/local/Cellar/llvm/9.0.0/include"
     ENV['LLVM_CONFIG']='/usr/local/Cellar/llvm/9.0.0/bin/llvm-config'
     args = %W[
       --disable-debug
