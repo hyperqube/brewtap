@@ -17,8 +17,8 @@ class PostgresqlHq < Formula
   depends_on "icu4c"
   depends_on "openssl"
   depends_on "readline"
-  conflicts_with "postgres-xc", "postgresql",
-    :because => "postgresql  ,postgresql-hq , and postgres-xc install the same binaries."
+  conflicts_with  "postgresql",
+    :because => "postgresql  ,postgresql-hqinstall the same binaries."
 
   def install
     # avoid adding the SDK library directory to the linker search path
@@ -50,21 +50,13 @@ class PostgresqlHq < Formula
       --with-libxslt
       --with-openssl
       --with-ldap
-      --with-lua
       --with-pam
-      --with-python3
       --with-uuid=e2fs
       --with-llvm
     ]
      # 
 
-    # The CLT is required to build Tcl support on 10.7 and 10.8 because
-    # tclConfig.sh is not part of the SDK
-    args << "--with-tcl"
-    if File.exist?("#{MacOS.sdk_path}/System/Library/Frameworks/Tcl.framework/tclConfig.sh")
-      args << "--with-tclconfig=#{MacOS.sdk_path}/System/Library/Frameworks/Tcl.framework"
-    end
-
+    
     system "./configure", *args
     system "make"
     system "make", "install-world", "datadir=#{pkgshare}",
